@@ -25,6 +25,10 @@ const Header = ({
     setMounted(true);
   }, []);
 
+  if (!mounted) {
+    return null;
+  }
+
   const handleContact = () => {
     if (router.asPath === "/resume") {
       window.open(`mailto:${email}`);
@@ -39,12 +43,7 @@ const Header = ({
         {({ open }) => (
           <>
             <div className="flex items-center justify-between p-2 laptop:p-0">
-              <h1
-                onClick={() => router.push("/")}
-                className="font-medium p-2 laptop:p-0 link"
-              >
-                {name}.
-              </h1>
+              <h1 className="font-medium p-2 laptop:p-0 link">{name}</h1>
 
               <div className="flex items-center">
                 {data.darkMode && (
@@ -56,7 +55,7 @@ const Header = ({
                     <img
                       className="h-6"
                       src={`/images/${
-                        theme === "dark" ? "moon.svg" : "sun.svg"
+                        theme === "dark" ? "sun.svg" : "moon.svg"
                       }`}
                     ></img>
                   </Button>
@@ -131,65 +130,109 @@ const Header = ({
         )}
       </Popover>
       <div
-        className={`mt-10 hidden flex-row items-center justify-between sticky bg-opacity-80 ${
-          theme === "light" ? "bg-white" : "bg-inherit"
-        } dark:text-white top-0 z-10 tablet:flex`}
+        className={`mt-10 hidden flex-row items-center justify-between sticky dark:text-white top-0 z-10 tablet:flex`}
       >
-        <h1
-          onClick={() => router.push("/")}
-          className="font-medium cursor-pointer mob:p-2 laptop:p-0"
-        >
-          {name}.
-        </h1>
+        <h1 className="font-medium mob:p-2 laptop:p-0">{name}</h1>
         {!isBlog ? (
           <div className="flex">
-            <Button onClick={handleWorkScroll}>Work</Button>
-            <Button onClick={handleTechStackScroll}>Tech Stack</Button>
-            <Button onClick={handleAboutScroll}>About</Button>
+            <Button
+              onClick={handleWorkScroll}
+              type="link"
+              classes="btn-nav pb-0.5"
+            >
+              Work
+            </Button>
+            <Button
+              onClick={handleTechStackScroll}
+              type="link"
+              classes="btn-nav pb-0.5"
+            >
+              Tech Stack
+            </Button>
+            <Button
+              onClick={handleAboutScroll}
+              type="link"
+              classes="btn-nav pb-0.5"
+            >
+              About
+            </Button>
             {showBlog && (
-              <Button onClick={() => router.push("/blog")}>Blog</Button>
+              <Button
+                onClick={() => router.push("/blog")}
+                type="link"
+                classes="btn-nav pb-0.5"
+              >
+                Blog
+              </Button>
             )}
             {showResume && (
               <Button
                 onClick={() =>
                   isResumePDF ? setIsOpen(true) : router.push("/resume")
                 }
-                classes="first:ml-1"
+                classes="first:ml-1 btn-nav pb-0.5"
+                type="link"
               >
                 Resume
               </Button>
             )}
 
-            <Button onClick={handleContact}>Contact</Button>
+            <Button
+              onClick={handleContact}
+              type="link"
+              classes="btn-nav pb-0.5"
+            >
+              Contact
+            </Button>
             {mounted && theme && data.darkMode && (
               <Button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
                 <img
                   className="h-6"
-                  src={`/images/${theme === "dark" ? "moon.svg" : "sun.svg"}`}
+                  src={`/images/${theme === "dark" ? "sun.svg" : "moon.svg"}`}
+                  suppressHydrationWarning
                 ></img>
               </Button>
             )}
           </div>
         ) : (
           <div className="flex">
-            <Button onClick={() => router.push("/")}>Home</Button>
+            <Button
+              onClick={() => router.push("/")}
+              type="link"
+              classes="btn-nav pb-0.5"
+            >
+              Home
+            </Button>
             {showBlog && (
-              <Button onClick={() => router.push("/blog")}>Blog</Button>
+              <Button
+                onClick={() => router.push("/blog")}
+                type="link"
+                classes="btn-nav pb-0.5"
+              >
+                Blog
+              </Button>
             )}
             {showResume && (
               <Button
                 onClick={() =>
                   isResumePDF ? setIsOpen(true) : router.push("/resume")
                 }
-                classes="first:ml-1"
+                type="link"
+                classes="first:ml-1 btn-nav pb-0.5"
               >
                 Resume
               </Button>
             )}
 
-            <Button onClick={handleContact}>Contact</Button>
+            <Button
+              onClick={handleContact}
+              type="link"
+              classes="btn-nav pb-0.5"
+            >
+              Contact
+            </Button>
 
             {mounted && theme && data.darkMode && (
               <Button
@@ -197,7 +240,8 @@ const Header = ({
               >
                 <img
                   className="h-6"
-                  src={`/images/${theme === "dark" ? "moon.svg" : "sun.svg"}`}
+                  src={`/images/${theme === "dark" ? "sun.svg" : "moon.svg"}`}
+                  suppressHydrationWarning
                 ></img>
               </Button>
             )}

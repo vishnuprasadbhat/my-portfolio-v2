@@ -26,11 +26,12 @@ export default function Home() {
   const textTwo = useRef();
   const textThree = useRef();
   const textFour = useRef();
+  const headerOffset = 20;
 
   // Handling Scroll
   const handleWorkScroll = () => {
     window.scrollTo({
-      top: workRef.current.offsetTop,
+      top: workRef.current.offsetTop - headerOffset,
       left: 0,
       behavior: "smooth",
     });
@@ -38,7 +39,7 @@ export default function Home() {
 
   const handleTechStackScroll = () => {
     window.scrollTo({
-      top: techStackRef.current.offsetTop,
+      top: techStackRef.current.offsetTop - headerOffset,
       left: 0,
       behavior: "smooth",
     });
@@ -46,7 +47,7 @@ export default function Home() {
 
   const handleAboutScroll = () => {
     window.scrollTo({
-      top: aboutRef.current.offsetTop,
+      top: aboutRef.current.offsetTop - headerOffset,
       left: 0,
       behavior: "smooth",
     });
@@ -54,7 +55,7 @@ export default function Home() {
 
   const handleContactScroll = () => {
     window.scrollTo({
-      top: contactRef.current.offsetTop,
+      top: contactRef.current.offsetTop - headerOffset,
       left: 0,
       behavior: "smooth",
     });
@@ -72,7 +73,9 @@ export default function Home() {
     <div className={`relative ${data.showCursor && "cursor-none"}`}>
       {data.showCursor && <Cursor />}
       <Head>
-        <title>{data.name}</title>
+        <title>{data.name}'s - Portfolio</title>
+        <meta name="description" content="Vishnu Prasad Bhat - Portfolio" />
+        <link rel="icon" href="/images/logo.png" />
       </Head>
 
       <div className="gradient-circle"></div>
@@ -101,13 +104,13 @@ export default function Home() {
             </h1>
             <h1
               ref={textThree}
-              className="text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+              className="text-accent text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
             >
               {data.headerTaglineThree}
             </h1>
             <h1
               ref={textFour}
-              className="text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+              className="text-2xl tablet:text-4xl laptop:text-4xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
             >
               {data.headerTaglineFour}
             </h1>

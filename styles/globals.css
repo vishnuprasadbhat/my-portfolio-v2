@@ -5,7 +5,7 @@
 @import "./markdown.css";
 
 * {
-  font-family: "Hind";
+  font-family: "Hind", sans-serif;
 }
 
 body {
@@ -74,4 +74,21 @@ body {
   left: 0;
   background: inherit;
   border-radius: inherit;
+}
+
+.btn-underline {
+  background: linear-gradient(#0088a9 0 0) bottom / var(--d, 0) 2px no-repeat;
+  transition: 0.4s;
+}
+.btn-underline:hover {
+  --d: 100%;
+}
+
+.btn-nav {
+  background: linear-gradient(90deg, transparent, #0088a9, transparent) bottom /
+    var(--d, 0) 3px no-repeat;
+  transition: 0.4s;
+}
+.btn-nav:hover {
+  --d: 100%;
 }

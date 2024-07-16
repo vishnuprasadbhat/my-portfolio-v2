@@ -1,6 +1,6 @@
 import { useTheme } from "next-themes";
 import { Dialog } from "@headlessui/react";
-import { Viewer, Worker, DocumentLoadEvent } from "@react-pdf-viewer/core";
+import { Viewer, Worker } from "@react-pdf-viewer/core";
 import { getFilePlugin } from "@react-pdf-viewer/get-file";
 import Button from "../Button";
 import packageJson from "../../package.json";
@@ -30,7 +30,6 @@ const PDFViewer = ({ isOpen, onClose, fileUrl }) => {
     >
       <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
         <Dialog.Panel
-          transition
           className={`w-full  ${
             theme === "dark" ? "bg-slate-800" : "bg-white"
           } p-6 backdrop-blur-2xl duration-300 ease-out data-[closed]:transform-[scale(95%)] data-[closed]:opacity-0`}
