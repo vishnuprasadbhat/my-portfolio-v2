@@ -188,7 +188,7 @@ const Edit = () => {
             </div>
           </div>
 
-          <div className="flex items-center">
+          <div className="flex items-center flex-wrap">
             <Button
               onClick={() => setCurrentTabs("HEADER")}
               type={currentTabs === "HEADER" && "primary"}

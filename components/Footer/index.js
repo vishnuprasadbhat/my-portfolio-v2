@@ -15,7 +15,7 @@ const Footer = ({}) => {
             <h1 className="text-3xl tablet:text-6xl laptop:text-6xl laptopl:text-8xl text-bold">
               TOGETHER
             </h1>
-            <div className="mt-10">
+            <div className="mt-5">
               <Socials />
             </div>
           </div>
