@@ -40,15 +40,22 @@ const Header = ({
 
   return (
     <>
-      <Popover className="block tablet:hidden mt-5">
+      <Popover
+        className={`block tablet:hidden mt-5 sticky top-0 z-10 ${
+          theme === "dark" ? "bg-dark-bg" : "bg-white"
+        } bg-opacity-90`}
+      >
         {({ open }) => (
           <>
             <div className="flex items-center justify-between p-2 laptop:p-0">
-              <h1 className="font-medium p-2 laptop:p-0 link">{name}</h1>
+              <h1 className="text-lg mt-2 ml-1 font-medium laptop:p-0">
+                {name}
+              </h1>
 
               <div className="flex items-center">
                 {data.darkMode && (
                   <Button
+                    classes="mob:text-2xl mob:py-2"
                     onClick={() =>
                       setTheme(theme === "dark" ? "light" : "dark")
                     }
@@ -61,7 +68,7 @@ const Header = ({
                   </Button>
                 )}
 
-                <Popover.Button>
+                <Popover.Button className="mob:text-2xl mob:p-2">
                   {open ? <FaXmark /> : <FaBars />}
                 </Popover.Button>
               </div>
@@ -119,7 +126,9 @@ const Header = ({
         )}
       </Popover>
       <div
-        className={`mt-10 hidden flex-row items-center justify-between sticky dark:text-white top-0 z-10 tablet:flex`}
+        className={`mt-10 hidden flex-row items-center justify-between sticky dark:text-white top-0 z-10 tablet:flex ${
+          theme === "dark" ? "bg-dark-bg" : "bg-white"
+        } bg-opacity-90`}
       >
         <h1 className="font-medium mob:p-2 laptop:p-0">{name}</h1>
         {!isBlog ? (
