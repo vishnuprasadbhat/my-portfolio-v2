@@ -1,3 +1,5 @@
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import "@react-pdf-viewer/zoom/lib/styles/index.css";
 import { useTheme } from "next-themes";
 import { Dialog } from "@headlessui/react";
 import { Viewer, Worker } from "@react-pdf-viewer/core";
@@ -5,9 +7,8 @@ import { getFilePlugin } from "@react-pdf-viewer/get-file";
 import Button from "../Button";
 import packageJson from "../../package.json";
 import { zoomPlugin } from "@react-pdf-viewer/zoom";
-import "@react-pdf-viewer/core/lib/styles/index.css";
-import "@react-pdf-viewer/zoom/lib/styles/index.css";
 import { useState } from "react";
+import { FaMagnifyingGlassMinus, FaMagnifyingGlassPlus } from "react-icons/fa6";
 
 const PDFViewer = ({ isOpen, onClose, fileUrl }) => {
   const { theme } = useTheme();
@@ -49,12 +50,7 @@ const PDFViewer = ({ isOpen, onClose, fileUrl }) => {
               <ZoomIn>
                 {(props) => (
                   <Button onClick={props.onClick}>
-                    <img
-                      className="h-5"
-                      src={`/images/${
-                        theme === "dark" ? "zoom-in-white.png" : "zoom-in.png"
-                      }`}
-                    ></img>
+                    <FaMagnifyingGlassPlus />
                   </Button>
                 )}
               </ZoomIn>
@@ -64,12 +60,7 @@ const PDFViewer = ({ isOpen, onClose, fileUrl }) => {
               <ZoomOut>
                 {(props) => (
                   <Button onClick={props.onClick}>
-                    <img
-                      className="h-5"
-                      src={`/images/${
-                        theme === "dark" ? "zoom-out-white.png" : "zoom-out.png"
-                      }`}
-                    ></img>
+                    <FaMagnifyingGlassMinus />
                   </Button>
                 )}
               </ZoomOut>

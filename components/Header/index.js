@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import PDFViewer from "../PDFViewer";
+import { FaSun, FaMoon, FaBars, FaXmark } from "react-icons/fa6";
 // Local Data
 import data from "../../data/portfolio.json";
 
@@ -52,28 +53,16 @@ const Header = ({
                       setTheme(theme === "dark" ? "light" : "dark")
                     }
                   >
-                    <img
-                      className="h-6"
-                      src={`/images/${
-                        theme === "dark" ? "sun.svg" : "moon.svg"
-                      }`}
-                    ></img>
+                    {theme === "dark" ? (
+                      <FaSun className="text-accent" />
+                    ) : (
+                      <FaMoon className="text-accent" />
+                    )}
                   </Button>
                 )}
 
                 <Popover.Button>
-                  <img
-                    className="h-5"
-                    src={`/images/${
-                      !open
-                        ? theme === "dark"
-                          ? "menu-white.svg"
-                          : "menu.svg"
-                        : theme === "light"
-                        ? "cancel.svg"
-                        : "cancel-white.svg"
-                    }`}
-                  ></img>
+                  {open ? <FaXmark /> : <FaBars />}
                 </Popover.Button>
               </div>
             </div>
@@ -188,11 +177,11 @@ const Header = ({
               <Button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
-                <img
-                  className="h-6"
-                  src={`/images/${theme === "dark" ? "sun.svg" : "moon.svg"}`}
-                  suppressHydrationWarning
-                ></img>
+                {theme === "dark" ? (
+                  <FaSun className="text-accent" />
+                ) : (
+                  <FaMoon className="text-accent" />
+                )}
               </Button>
             )}
           </div>
@@ -238,11 +227,11 @@ const Header = ({
               <Button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
-                <img
-                  className="h-6"
-                  src={`/images/${theme === "dark" ? "sun.svg" : "moon.svg"}`}
-                  suppressHydrationWarning
-                ></img>
+                {theme === "dark" ? (
+                  <FaSun className="text-accent" />
+                ) : (
+                  <FaMoon className="text-accent" />
+                )}
               </Button>
             )}
           </div>

@@ -11,7 +11,8 @@ import Button from "../components/Button";
 import Link from "next/link";
 import Cursor from "../components/Cursor";
 import TechStack from "../components/TechStack";
-import { Transition } from "@headlessui/react";
+import { FaLocationDot } from "react-icons/fa6";
+import { MdWavingHand } from "react-icons/md";
 
 // Local Data
 import data from "../data/portfolio.json";
@@ -90,12 +91,15 @@ export default function Home() {
         />
         <div className="laptop:mt-20 laptop:mb-20 mt-10">
           <div className="mt-5">
-            <h1
+            <div
+              className="flex items-center text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-4/5 mob:w-full laptop:w-4/5"
               ref={textOne}
-              className="text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-4/5 mob:w-full laptop:w-4/5"
             >
-              {data.headerTaglineOne}
-            </h1>
+              <h1 ref={textOne} className="mr-3">
+                {data.headerTaglineOne}
+              </h1>
+              <MdWavingHand className="mb-2 wave" />
+            </div>
             <h1
               ref={textTwo}
               className="text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
@@ -108,12 +112,13 @@ export default function Home() {
             >
               {data.headerTaglineThree}
             </h1>
-            <h1
+            <div
+              className="flex items-center text-2xl tablet:text-4xl laptop:text-4xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
               ref={textFour}
-              className="text-2xl tablet:text-4xl laptop:text-4xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
             >
-              {data.headerTaglineFour}
-            </h1>
+              <FaLocationDot className="mr-2 mb-1" />
+              <h1>{data.headerTaglineFour}</h1>
+            </div>
           </div>
 
           <Socials className="mt-2 laptop:mt-5" />
