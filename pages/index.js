@@ -16,6 +16,7 @@ import { MdWavingHand } from "react-icons/md";
 
 // Local Data
 import data from "../data/portfolio.json";
+import Image from "next/image";
 
 export default function Home() {
   // Ref
@@ -82,7 +83,7 @@ export default function Home() {
       <div className="gradient-circle"></div>
       <div className="gradient-circle-bottom"></div>
 
-      <div className="container mx-auto mb-10">
+      <div className="relative container mx-auto mb-10">
         <Header
           handleWorkScroll={handleWorkScroll}
           handleAboutScroll={handleAboutScroll}
@@ -173,6 +174,7 @@ export default function Home() {
             </Link>
           </div>
         )}
+
         <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
           <h1 className="tablet:mt-10 text-2xl text-bold">About.</h1>
           <p className="mob:text-justify tablet:mt-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
@@ -181,6 +183,17 @@ export default function Home() {
         </div>
         <div ref={contactRef}>
           <Footer />
+        </div>
+        <div className="absolute right-2 bottom-24 tablet:right-2 tablet:bottom-5  laptop:-right-5 laptop:bottom-0">
+          <Image
+            src="/images/contact.png"
+            width={368}
+            height={592}
+            alt="contact"
+            quality={100}
+            loading="lazy"
+            className="mob:w-28 tablet:w-52 laptop:w-96"
+          ></Image>
         </div>
       </div>
     </div>
