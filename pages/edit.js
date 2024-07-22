@@ -21,17 +21,17 @@ const Edit = ({ myData }) => {
 
   const saveData = () => {
     if (process.env.NODE_ENV === "development") {
-      // fetch("/api/portfolio", {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify(data),
-      // });
+      fetch("/api/portfolio", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+    } else {
       const result = updatePortfolio(JSON.stringify(data));
       console.log("Updated", result);
-    } else {
-      alert("This thing only works in development mode.");
+      // alert("This thing only works in development mode.");
     }
   };
 
