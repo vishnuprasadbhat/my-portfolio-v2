@@ -8,22 +8,28 @@ import { useTheme } from "next-themes";
 import yourData from "../data/portfolio.json";
 import Cursor from "../components/Cursor";
 import Link from "next/link";
+import { getPortfolioData } from "../data/get-portfolio";
+import { updatePortfolio } from "../data/update-portfolio";
 
-const Edit = () => {
+const Edit = ({ myData }) => {
   // states
-  const [data, setData] = useState(yourData);
+  const [data, setData] = useState(
+    process.env.NODE_ENV === "development" ? yourData : myData
+  );
   const [currentTabs, setCurrentTabs] = useState("HEADER");
   const { theme } = useTheme();
 
   const saveData = () => {
     if (process.env.NODE_ENV === "development") {
-      fetch("/api/portfolio", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      // fetch("/api/portfolio", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(data),
+      // });
+      const result = updatePortfolio(JSON.stringify(data));
+      console.log("Updated", result);
     } else {
       alert("This thing only works in development mode.");
     }
@@ -172,6 +178,10 @@ const Edit = () => {
       resume: { ...data.resume, experiences: copyExperiences },
     });
   };
+
+  if (!myData) {
+    return <>loading...</>;
+  }
 
   return (
     <div className={`container mx-auto ${data.showCursor && "cursor-none"}`}>
@@ -1076,3 +1086,8 @@ const Edit = () => {
 };
 
 export default Edit;
+
+export async function getStaticProps() {
+  const myData = await getPortfolioData();
+  return { props: { myData } };
+}

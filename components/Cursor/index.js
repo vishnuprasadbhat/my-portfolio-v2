@@ -31,6 +31,9 @@ const Cursor = () => {
             scale: 0.1,
             opacity: 0.2,
           }}
+          strokeColor="#000"
+          strokeWidth={0}
+          opacity={0.5}
           targetOpacity={0.5}
           targetScale={2}
         />

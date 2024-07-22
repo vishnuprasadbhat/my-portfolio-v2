@@ -1,10 +1,8 @@
-import { useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import Header from "../components/Header";
 import ServiceCard from "../components/ServiceCard";
 import Socials from "../components/Socials";
 import WorkCard from "../components/WorkCard";
-import { useIsomorphicLayoutEffect } from "../utils";
-import { stagger } from "../animations";
 import Footer from "../components/Footer";
 import Head from "next/head";
 import Button from "../components/Button";
@@ -13,12 +11,23 @@ import Cursor from "../components/Cursor";
 import TechStack from "../components/TechStack";
 import { FaLocationDot } from "react-icons/fa6";
 import { MdWavingHand } from "react-icons/md";
+// import { getPortfolioData } from "../data/get-portfolio";
 
 // Local Data
-import data from "../data/portfolio.json";
+import localData from "../data/portfolio.json";
 import Image from "next/image";
+import GlobalContext from "../context/globalContext";
+import { getPortfolioData } from "../data/get-portfolio";
+import { useIsomorphicLayoutEffect } from "../utils";
+import { stagger } from "../animations";
 
-export default function Home() {
+export default function Home({ data }) {
+  const { update } = useContext(GlobalContext);
+
+  useEffect(() => {
+    update({ data });
+  }, []);
+
   // Ref
   const workRef = useRef();
   const aboutRef = useRef();
@@ -70,6 +79,10 @@ export default function Home() {
       { y: 0, x: 0, transform: "scale(1)" }
     );
   }, []);
+
+  if (!data) {
+    return <>loading...</>;
+  }
 
   return (
     <div className={`relative ${data.showCursor && "cursor-none"}`}>
@@ -198,4 +211,9 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const data = await getPortfolioData();
+  return { props: { data } };
 }

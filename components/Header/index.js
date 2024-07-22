@@ -1,12 +1,13 @@
 import { Popover } from "@headlessui/react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "../Button";
 import PDFViewer from "../PDFViewer";
 import { FaSun, FaMoon, FaBars, FaXmark } from "react-icons/fa6";
 // Local Data
-import data from "../../data/portfolio.json";
+import localData from "../../data/portfolio.json";
+import GlobalContext from "../../context/globalContext";
 
 const Header = ({
   handleWorkScroll,
@@ -16,11 +17,20 @@ const Header = ({
   isBlog,
 }) => {
   const router = useRouter();
+  const { data } = useContext(GlobalContext);
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { name, email, showBlog, showResume, isResumePDF, resumeLink } = data;
+  const {
+    name,
+    email,
+    showBlog,
+    showResume,
+    isResumePDF,
+    resumeLink,
+    darkMode,
+  } = data ?? {};
 
   useEffect(() => {
     setMounted(true);
@@ -53,7 +63,7 @@ const Header = ({
               </h1>
 
               <div className="flex items-center">
-                {data.darkMode && (
+                {darkMode && (
                   <Button
                     classes="mob:text-2xl mob:py-2"
                     onClick={() =>
@@ -182,7 +192,7 @@ const Header = ({
             >
               Contact
             </Button>
-            {mounted && theme && data.darkMode && (
+            {mounted && theme && darkMode && (
               <Button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
@@ -232,7 +242,7 @@ const Header = ({
               Contact
             </Button>
 
-            {mounted && theme && data.darkMode && (
+            {mounted && theme && darkMode && (
               <Button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >

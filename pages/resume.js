@@ -7,14 +7,14 @@ import Socials from "../components/Socials";
 import Button from "../components/Button";
 import { useTheme } from "next-themes";
 // Data
-import { name, showResume } from "../data/portfolio.json";
-import { resume } from "../data/portfolio.json";
-import data from "../data/portfolio.json";
+import localData from "../data/portfolio.json";
+import { getPortfolioData } from "../data/get-portfolio";
 
-const Resume = () => {
+const Resume = ({ data }) => {
   const router = useRouter();
   const theme = useTheme();
   const [mount, setMount] = useState(false);
+  const { name, showResume, resume } = data;
 
   useEffect(() => {
     setMount(true);
@@ -132,3 +132,8 @@ const Resume = () => {
 };
 
 export default Resume;
+
+export async function getStaticProps() {
+  const data = await getPortfolioData();
+  return { props: { data } };
+}

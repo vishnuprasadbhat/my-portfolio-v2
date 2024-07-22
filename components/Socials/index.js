@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../Button";
 
-import yourData from "../../data/portfolio.json";
+import localData from "../../data/portfolio.json";
+import GlobalContext from "../../context/globalContext";
 
 const Socials = ({ className }) => {
+  const { data } = useContext(GlobalContext);
   return (
     <div className={`${className} flex flex-wrap mob:flex-nowrap link`}>
-      {yourData.socials.map((social, index) => (
+      {data?.socials.map((social, index) => (
         <Button
           key={index}
           type="link"

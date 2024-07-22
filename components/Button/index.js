@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import data from "../../data/portfolio.json";
+import localData from "../../data/portfolio.json";
+import GlobalContext from "../../context/globalContext";
 
 const Button = ({ children, type, onClick, classes }) => {
+  const { data } = useContext(GlobalContext);
   const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -21,7 +23,7 @@ const Button = ({ children, type, onClick, classes }) => {
         className={`text-sm tablet:text-base px-2 py-1 m-1 laptop:m-2 rounded-lg bg-accent-100 ${
           theme === "dark" ? "text-white" : "text-black"
         }  transition-all duration-400 ease-out first:ml-0 hover:scale-105 active:scale-100 link ${
-          data.showCursor && "cursor-none"
+          data?.showCursor && "cursor-none"
         }  ${classes}`}
       >
         {children}
@@ -35,7 +37,7 @@ const Button = ({ children, type, onClick, classes }) => {
         onClick={onClick}
         type="button"
         className={`text-sm tablet:text-base px-2 py-1 m-1 laptop:m-2  flex items-center hover:text-accent tablet:first:ml-0 ${
-          data.showCursor && "cursor-none"
+          data?.showCursor && "cursor-none"
         } ${classes} link`}
       >
         {children}
@@ -52,7 +54,7 @@ const Button = ({ children, type, onClick, classes }) => {
           ? "hover:bg-slate-600 text-white"
           : "hover:bg-accent-800"
       } hover:scale-105 active:scale-100  tablet:first:ml-0  ${
-        data.showCursor && "cursor-none"
+        data?.showCursor && "cursor-none"
       } ${classes} link`}
     >
       {children}
