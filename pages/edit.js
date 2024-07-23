@@ -180,7 +180,7 @@ const Edit = ({ myData }) => {
   };
 
   if (!myData) {
-    return <>loading...</>;
+    return <Loader />;
   }
 
   return (

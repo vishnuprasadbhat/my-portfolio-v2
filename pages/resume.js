@@ -14,7 +14,7 @@ const Resume = ({ data }) => {
   const router = useRouter();
   const theme = useTheme();
   const [mount, setMount] = useState(false);
-  const { name, showResume, resume } = data;
+  const { name, showResume, resume } = data ?? {};
 
   useEffect(() => {
     setMount(true);

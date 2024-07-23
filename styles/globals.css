@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 @import "./markdown.css";
+@import "./loading.css";
 
 * {
   font-family: "Hind", sans-serif;

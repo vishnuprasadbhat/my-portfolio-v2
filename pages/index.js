@@ -19,6 +19,7 @@ import GlobalContext from "../context/globalContext";
 import { getPortfolioData } from "../data/get-portfolio";
 import { useIsomorphicLayoutEffect } from "../utils";
 import { stagger } from "../animations";
+import Loader from "../components/loader";
 
 export default function Home({ data }) {
   const { update } = useContext(GlobalContext);
@@ -80,7 +81,7 @@ export default function Home({ data }) {
   }, []);
 
   if (!data) {
-    return <>loading...</>;
+    return <Loader />;
   }
 
   return (
