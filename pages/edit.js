@@ -10,6 +10,7 @@ import Cursor from "../components/Cursor";
 import Link from "next/link";
 import { getPortfolioData } from "../data/get-portfolio";
 import { updatePortfolio } from "../data/update-portfolio";
+import Loader from "../components/Loader";
 
 const Edit = ({ myData }) => {
   // states
