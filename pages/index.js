@@ -37,7 +37,7 @@ export default function Home({ data }) {
   const textTwo = useRef();
   const textThree = useRef();
   const textFour = useRef();
-  const headerOffset = 20;
+  const headerOffset = 30; //20
 
   // Handling Scroll
   const handleWorkScroll = () => {

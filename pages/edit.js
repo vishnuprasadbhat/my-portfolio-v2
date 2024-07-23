@@ -13,13 +13,12 @@ import { updatePortfolio } from "../data/update-portfolio";
 
 const Edit = ({ myData }) => {
   // states
-  const [data, setData] = useState(
-    process.env.NODE_ENV === "development" ? yourData : myData
-  );
+  const [data, setData] = useState(myData);
+  const [updateMsg, setUpdateMsg] = useState(null);
   const [currentTabs, setCurrentTabs] = useState("HEADER");
   const { theme } = useTheme();
 
-  const saveData = () => {
+  const saveData = async () => {
     if (process.env.NODE_ENV === "development") {
       fetch("/api/portfolio", {
         method: "POST",
@@ -28,11 +27,16 @@ const Edit = ({ myData }) => {
         },
         body: JSON.stringify(data),
       });
-    } else {
-      const result = updatePortfolio(JSON.stringify(data));
-      console.log("Updated", result);
-      // alert("This thing only works in development mode.");
     }
+    const result = await updatePortfolio(data);
+    if (result?.rowCount > 0) {
+      setUpdateMsg({ msg: "Updated successfully!", status: "success" });
+    } else {
+      setUpdateMsg({ msg: "Something went wrong!", status: "error" });
+    }
+    setTimeout(() => {
+      setUpdateMsg(null);
+    }, 4000);
   };
 
   // Project Handler
@@ -184,13 +188,30 @@ const Edit = ({ myData }) => {
   }
 
   return (
-    <div className={`container mx-auto ${data.showCursor && "cursor-none"}`}>
+    <div
+      className={`container mx-auto pb-5 ${data.showCursor && "cursor-none"}`}
+    >
       <Header isBlog></Header>
       {data.showCursor && <Cursor />}
       <div className="mt-10">
-        <div className={`${theme === "dark" ? "bg-transparent" : "bg-white"}`}>
+        <div
+          className={`sticky sticky top-10 z-1 bg-opacity-90 ${
+            theme === "dark" ? "bg-dark-bg" : "bg-white"
+          }`}
+        >
           <div className="flex items-center justify-between">
-            <h1 className="text-4xl">Dashboard</h1>
+            <h1 className="text-4xl mt-1">Dashboard</h1>
+            {updateMsg ? (
+              <div
+                className={`px-3 py-1 border-black dark:border-white rounded-lg ${
+                  updateMsg?.status === "success"
+                    ? "bg-green-500"
+                    : "bg-red-500"
+                }`}
+              >
+                {updateMsg?.msg}
+              </div>
+            ) : null}
             <div className="flex items-center">
               <Button onClick={saveData} type="primary">
                 Save
@@ -198,7 +219,7 @@ const Edit = ({ myData }) => {
             </div>
           </div>
 
-          <div className="flex items-center flex-wrap">
+          <div className="flex items-center flex-wrap mt-5">
             <Button
               onClick={() => setCurrentTabs("HEADER")}
               type={currentTabs === "HEADER" && "primary"}

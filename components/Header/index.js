@@ -55,9 +55,9 @@ const Header = ({
           theme === "dark" ? "bg-dark-bg" : "bg-white"
         } bg-opacity-90`}
       >
-        {({ open }) => (
+        {({ open, close }) => (
           <>
-            <div className="flex items-center justify-between p-2 laptop:p-0">
+            <div className="flex items-center justify-between laptop:p-0">
               <h1 className="text-lg mt-2 ml-1 font-medium laptop:p-0">
                 {name}
               </h1>
@@ -89,7 +89,7 @@ const Header = ({
               } shadow-md rounded-md`}
             >
               {!isBlog ? (
-                <div className="grid grid-cols-1">
+                <div className="grid grid-cols-1" onClick={close}>
                   <Button onClick={handleWorkScroll}>Work</Button>
                   <Button onClick={handleTechStackScroll}>Tech Stack</Button>
                   <Button onClick={handleAboutScroll}>About</Button>
@@ -110,7 +110,7 @@ const Header = ({
                   <Button onClick={handleContact}>Contact</Button>
                 </div>
               ) : (
-                <div className="grid grid-cols-1">
+                <div className="grid grid-cols-1" onClick={close}>
                   <Button onClick={() => router.push("/")} classes="first:ml-1">
                     Home
                   </Button>

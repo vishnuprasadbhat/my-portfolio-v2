@@ -1,12 +1,16 @@
-import { sql } from "@vercel/postgres";
+import { createPool } from "@vercel/postgres";
+
+const pool = createPool({
+  connectionString: process.env.NEXT_PUBLIC_POSTGRES_URL,
+});
 
 export async function updatePortfolio(data) {
   try {
-    const result = await sql`UPDATE portfolio SET data = ${data} WHERE id = 8`;
-    console.log("test", result);
+    const result = await pool.sql`UPDATE portfolio SET data = ${JSON.stringify(
+      data
+    )} WHERE id = 8`;
     return result;
   } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch data.");
+    throw new Error("Failed to update data!");
   }
 }
