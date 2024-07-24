@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { useTheme } from "next-themes";
 import Button from "@/components/Button";
 import data from "@/data/portfolio.json";
@@ -8,6 +7,7 @@ import Cursor from "@/components/Cursor";
 import Header from "@/components/Header";
 import Socials from "@/components/Socials";
 import ProjectResume from "@/components/ProjectResume";
+import { useRouter } from "next/navigation";
 
 const Resume = () => {
   const router = useRouter();
