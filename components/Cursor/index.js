@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import CustomCursor from "custom-cursor-react";
-import "custom-cursor-react/dist/index.css";
+import AnimatedCursor from "react-animated-cursor";
 import { useTheme } from "next-themes";
 
 const Cursor = () => {
@@ -10,9 +9,9 @@ const Cursor = () => {
 
   const getCusomColor = () => {
     if (theme.theme === "dark") {
-      return "#fff";
+      return "255, 255, 255";
     } else if (theme.theme === "light") {
-      return "#000";
+      return "0, 0, 0";
     }
   };
 
@@ -22,18 +21,10 @@ const Cursor = () => {
   return (
     <>
       {mount && (
-        <CustomCursor
-          targets={[".link"]}
-          customClass="custom-cursor"
-          dimensions={30}
-          fill={getCusomColor()}
-          smoothness={{
-            movement: 0.2,
-            scale: 0.1,
-            opacity: 0.2,
-          }}
-          targetOpacity={0.5}
-          targetScale={2}
+        <AnimatedCursor
+          color={getCusomColor()}
+          innerScale={0.7}
+          outerScale={3}
         />
       )}
     </>
