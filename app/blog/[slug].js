@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { getPostBySlug, getAllPosts } from "@/utils/api";
+// import { getPostBySlug, getAllPosts } from "@/utils/api";
 import Header from "@/components/Header";
 import ContentSection from "@/components/ContentSection";
 import Footer from "@/components/Footer";
@@ -78,39 +78,39 @@ const BlogPost = ({ post }) => {
   );
 };
 
-export async function getStaticProps({ params }) {
-  const post = getPostBySlug(params.slug, [
-    "date",
-    "slug",
-    "preview",
-    "title",
-    "tagline",
-    "preview",
-    "image",
-    "content",
-  ]);
+// export async function getStaticProps({ params }) {
+//   const post = getPostBySlug(params.slug, [
+//     "date",
+//     "slug",
+//     "preview",
+//     "title",
+//     "tagline",
+//     "preview",
+//     "image",
+//     "content",
+//   ]);
 
-  return {
-    props: {
-      post: {
-        ...post,
-      },
-    },
-  };
-}
+//   return {
+//     props: {
+//       post: {
+//         ...post,
+//       },
+//     },
+//   };
+// }
 
-export async function getStaticPaths() {
-  const posts = getAllPosts(["slug"]);
+// export async function getStaticPaths() {
+//   const posts = getAllPosts(["slug"]);
 
-  return {
-    paths: posts.map((post) => {
-      return {
-        params: {
-          slug: post.slug,
-        },
-      };
-    }),
-    fallback: false,
-  };
-}
+//   return {
+//     paths: posts.map((post) => {
+//       return {
+//         params: {
+//           slug: post.slug,
+//         },
+//       };
+//     }),
+//     fallback: false,
+//   };
+// }
 export default BlogPost;

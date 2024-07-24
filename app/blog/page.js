@@ -8,7 +8,7 @@ import Cursor from "@/components/Cursor";
 import Header from "@/components/Header";
 import data from "@/data/portfolio.json";
 import { ISOToDate, useIsomorphicLayoutEffect } from "@/utils";
-import { getAllPosts } from "@/utils/api";
+// import { getAllPosts } from "@/utils/api";
 import Image from "next/image";
 const Blog = ({ posts }) => {
   const showBlog = useRef(data.showBlog);
@@ -130,21 +130,21 @@ const Blog = ({ posts }) => {
   );
 };
 
-export async function getStaticProps() {
-  const posts = getAllPosts([
-    "slug",
-    "title",
-    "image",
-    "preview",
-    "author",
-    "date",
-  ]);
+// export async function getStaticProps() {
+//   const posts = getAllPosts([
+//     "slug",
+//     "title",
+//     "image",
+//     "preview",
+//     "author",
+//     "date",
+//   ]);
 
-  return {
-    props: {
-      posts: [...posts],
-    },
-  };
-}
+//   return {
+//     props: {
+//       posts: [...posts],
+//     },
+//   };
+// }
 
 export default Blog;
