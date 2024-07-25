@@ -5,8 +5,6 @@ import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import PDFViewer from "../PDFViewer";
 import { FaSun, FaMoon, FaBars, FaXmark } from "react-icons/fa6";
-// Local Data
-import data from "../../data/portfolio.json";
 import { usePathname, useRouter } from "next/navigation";
 import HeaderSkeleton from "./skeleton";
 
@@ -16,6 +14,8 @@ const Header = ({
   handleTechStackScroll,
   handleContactScroll,
   isBlog,
+  isEdit,
+  data,
 }) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -23,7 +23,8 @@ const Header = ({
   const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { name, email, showBlog, showResume, isResumePDF, resumeLink } = data;
+  const { name, email, showBlog, showResume, isResumePDF, resumeLink } =
+    data ?? {};
 
   useEffect(() => {
     setMounted(true);
@@ -166,7 +167,7 @@ const Header = ({
                 Blog
               </Button>
             )}
-            {showResume && (
+            {!isEdit && showResume && (
               <Button
                 onClick={() =>
                   isResumePDF ? setIsOpen(true) : router.push("/resume")
@@ -178,13 +179,15 @@ const Header = ({
               </Button>
             )}
 
-            <Button
-              onClick={handleContact}
-              type="link"
-              classes="btn-nav pb-0.5"
-            >
-              Contact
-            </Button>
+            {!isEdit && (
+              <Button
+                onClick={handleContact}
+                type="link"
+                classes="btn-nav pb-0.5"
+              >
+                Contact
+              </Button>
+            )}
             {mounted && theme && data.darkMode && (
               <Button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -206,7 +209,7 @@ const Header = ({
             >
               Home
             </Button>
-            {showBlog && (
+            {!isEdit && showBlog && (
               <Button
                 onClick={() => router.push("/blog")}
                 type="link"
@@ -215,7 +218,7 @@ const Header = ({
                 Blog
               </Button>
             )}
-            {showResume && (
+            {!isEdit && showResume && (
               <Button
                 onClick={() =>
                   isResumePDF ? setIsOpen(true) : router.push("/resume")
@@ -227,13 +230,15 @@ const Header = ({
               </Button>
             )}
 
-            <Button
-              onClick={handleContact}
-              type="link"
-              classes="btn-nav pb-0.5"
-            >
-              Contact
-            </Button>
+            {!isEdit && (
+              <Button
+                onClick={handleContact}
+                type="link"
+                classes="btn-nav pb-0.5"
+              >
+                Contact
+              </Button>
+            )}
 
             {mounted && theme && data.darkMode && (
               <Button

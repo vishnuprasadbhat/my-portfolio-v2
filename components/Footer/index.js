@@ -1,8 +1,7 @@
 import React from "react";
 import Socials from "../Socials";
-import Link from "next/link";
 
-const Footer = ({}) => {
+const Footer = ({ data }) => {
   return (
     <>
       <div className="mt-5 laptop:mt-40 p-2 laptop:p-0">
@@ -16,7 +15,7 @@ const Footer = ({}) => {
               TOGETHER
             </h1>
             <div className="mt-5">
-              <Socials />
+              <Socials data={data} />
             </div>
           </div>
         </div>

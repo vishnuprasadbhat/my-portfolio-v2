@@ -36,7 +36,7 @@ const BlogPost = ({ post }) => {
           data.showCursor && "cursor-none"
         }`}
       >
-        <Header isBlog={true} />
+        <Header data={data} isBlog={true} />
         <div className="mt-10 flex flex-col">
           <Image
             className="w-full h-96 rounded-lg shadow-lg object-cover"
@@ -57,7 +57,7 @@ const BlogPost = ({ post }) => {
           </h2>
         </div>
         <ContentSection content={post.content}></ContentSection>
-        <Footer />
+        <Footer data={data} />
       </div>
       {process.env.NODE_ENV === "development" && (
         <div className="fixed bottom-6 right-6">

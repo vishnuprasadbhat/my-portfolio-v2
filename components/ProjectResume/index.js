@@ -2,7 +2,6 @@ import React from "react";
 
 const ProjectResume = ({ dates, type, position, bullets }) => {
   const bulletsLocal = bullets.split("#");
-  console.log("test", bulletsLocal);
 
   return (
     <div className="mt-5 w-full flex mob:flex-col desktop:flex-row justify-between">
