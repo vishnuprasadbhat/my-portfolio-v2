@@ -16,6 +16,8 @@ module.exports = {
     extend: {
       colors: {
         "dark-bg": "#121212",
+        "skeleton-bg": "#eee",
+        "dark-skeleton-bg": "#313131",
         accent: "#0088a9",
         "accent-100": "#1a94b2",
         "accent-200": "#33a0ba",
@@ -34,6 +36,10 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-skeleton":
+          "linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%)",
+        "gradient-dark-skeleton":
+          "linear-gradient(-45deg, #313131 40%, #555555 50%, #313131 60%",
       },
     },
   },

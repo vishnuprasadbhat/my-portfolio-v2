@@ -8,6 +8,7 @@ import { FaSun, FaMoon, FaBars, FaXmark } from "react-icons/fa6";
 // Local Data
 import data from "../../data/portfolio.json";
 import { usePathname, useRouter } from "next/navigation";
+import HeaderSkeleton from "./skeleton";
 
 const Header = ({
   handleWorkScroll,
@@ -29,7 +30,7 @@ const Header = ({
   }, []);
 
   if (!mounted) {
-    return null;
+    return <HeaderSkeleton />;
   }
 
   const handleContact = () => {

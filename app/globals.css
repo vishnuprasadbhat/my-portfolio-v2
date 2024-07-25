@@ -8,6 +8,8 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  /* --skeleton-bg: #eee;
+  --tw-gradient-stops: #eee 40%, #fafafa 50%, #eee 60%; */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +17,8 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    /* --skeleton-bg: #313131; */
+    /* --tw-gradient-stops: #313131 0%, #434343 30%, #555555 40%, #696969 100%; */
   }
 }
 
@@ -141,6 +145,26 @@ body {
   }
   100% {
     transform: scaleX(-1) rotate(0deg);
+  }
+}
+
+.skeleton {
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  background-size: 300%;
+  background-position-x: 100%;
+
+  animation-name: shimmer;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: 0%;
   }
 }
 
