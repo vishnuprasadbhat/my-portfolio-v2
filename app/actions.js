@@ -36,7 +36,6 @@ export const updatePortfolio = async (prevData, formData) => {
   try {
     const result =
       await sql`UPDATE portfolio SET data = ${data} WHERE id = ${id}`;
-    console.log("test", result);
     revalidatePath("/");
     if (result?.rowCount > 0) {
       return { msg: "Updated Successfully!", status: "success" };
@@ -44,7 +43,7 @@ export const updatePortfolio = async (prevData, formData) => {
       return { msg: "Failed to update data!", status: "error" };
     }
   } catch (error) {
-    return { msg: error.message, status: "error" };
+    return { msg: error?.message, status: "error" };
     // throw new Error("Failed to update data.");
   }
 };

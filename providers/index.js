@@ -4,7 +4,7 @@ import { IconContext } from "react-icons";
 
 const Providers = ({ children }) => {
   return (
-    <ThemeProvider>
+    <ThemeProvider attribute="class" defaultTheme="dark">
       <IconContext.Provider value={{ style: { verticalAlign: "middle" } }}>
         {children}
       </IconContext.Provider>

@@ -10,8 +10,12 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  /* --skeleton-bg: #eee;
-  --tw-gradient-stops: #eee 40%, #fafafa 50%, #eee 60%; */
+}
+
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,8 +23,6 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
-    /* --skeleton-bg: #313131; */
-    /* --tw-gradient-stops: #313131 0%, #434343 30%, #555555 40%, #696969 100%; */
   }
 }
 

@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import Cursor from "@/components/Cursor";
 import { v4 as uuidv4 } from "uuid";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { updateLocalFile, updatePortfolio } from "../actions";
 import { useFormState } from "react-dom";
@@ -14,7 +13,6 @@ import Button from "@/components/Button";
 const initialState = { msg: "", status: "" };
 
 const EditData = ({ myData, id }) => {
-  const { theme } = useTheme();
   const [data, setData] = useState(myData);
   const [currentTabs, setCurrentTabs] = useState("HEADER");
   const [updateStatus, formAction] = useFormState(
@@ -30,7 +28,8 @@ const EditData = ({ myData, id }) => {
         toast.error(updateStatus?.msg);
       }
     }
-  }, [updateStatus]);
+    console.log(updateStatus?.msg, updateStatus?.status);
+  }, [updateStatus?.msg, updateStatus?.status]);
 
   const saveData = async () => {
     if (process.env.NODE_ENV === "development") {
@@ -193,9 +192,7 @@ const EditData = ({ myData, id }) => {
         <input type="hidden" name="id" value={id} />
         <input type="hidden" name="myData" value={JSON.stringify(data)} />
         <div className="mt-5">
-          <div
-            className={`${theme === "dark" ? "bg-transparent" : "bg-white"}`}
-          >
+          <div>
             <div className="flex items-center justify-between">
               <h1 className="text-4xl">Dashboard</h1>
               <div className="flex items-center">
