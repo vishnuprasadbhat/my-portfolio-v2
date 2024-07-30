@@ -1,5 +1,4 @@
 "use client";
-import Cursor from "@/components/Cursor";
 import Image from "next/image";
 import Header from "@/components/Header";
 import { FaLocationDot } from "react-icons/fa6";
@@ -114,7 +113,7 @@ export default function Home({ data }) {
       <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
         <h1 className="text-2xl text-bold">Work.</h1>
         <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
-          {data.projects.map((project) => (
+          {data?.projects?.map((project) => (
             <WorkCard
               key={project.id}
               img={project.imageSrc}
@@ -154,13 +153,13 @@ export default function Home({ data }) {
         </div>
       </div>
       {/* This button should not go into production */}
-      {process.env.NODE_ENV === "development" && (
-        <div className="fixed bottom-5 right-5">
-          <Link href="/edit">
-            <Button type="primary">Edit Data</Button>
-          </Link>
-        </div>
-      )}
+      {/* {process.env.NODE_ENV === "development" && ( */}
+      <div className="fixed bottom-5 right-5">
+        <Link href="/edit">
+          <Button type="primary">Edit Data</Button>
+        </Link>
+      </div>
+      {/* )} */}
 
       <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
         <h1 className="tablet:mt-10 text-2xl text-bold">About.</h1>

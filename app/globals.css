@@ -4,6 +4,7 @@
 @tailwind utilities;
 @import "../styles/markdown.css";
 @import "../styles/loading.css";
+@import "~react-toastify/dist/ReactToastify.min.css";
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -146,6 +147,31 @@ body {
   }
   100% {
     transform: scaleX(-1) rotate(0deg);
+  }
+}
+
+.button-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
   }
 }
 

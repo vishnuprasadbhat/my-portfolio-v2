@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^1.6.6",
+    "@headlessui/react": "^2.1.2",
     "@react-pdf-viewer/core": "^3.6.0",
     "@react-pdf-viewer/get-file": "^3.12.0",
     "@react-pdf-viewer/zoom": "^3.12.0",
@@ -32,6 +32,7 @@
     "react-markdown": "^8.0.3",
     "react-syntax-highlighter": "^15.5.0",
     "react-textarea-autosize": "^8.3.4",
+    "react-toastify": "^10.0.5",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
     "styled-components": "^5.3.5",

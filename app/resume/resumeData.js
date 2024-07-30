@@ -19,7 +19,7 @@ const ResumeData = ({ data }) => {
     if (!showResume) {
       router.push("/");
     }
-  }, []);
+  }, [showResume, router]);
 
   return (
     <>

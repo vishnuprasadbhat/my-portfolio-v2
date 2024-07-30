@@ -2,9 +2,18 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import data from "../../data/portfolio.json";
+import { useFormStatus } from "react-dom";
 
-const Button = ({ children, type, onClick, classes }) => {
+const Button = ({
+  children,
+  type,
+  onClick,
+  classes,
+  isForm,
+  isDisabled = false,
+}) => {
   const { theme } = useTheme();
+  const { pending } = useFormStatus();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -18,12 +27,14 @@ const Button = ({ children, type, onClick, classes }) => {
     return (
       <button
         onClick={onClick}
-        type="button"
-        className={`text-sm tablet:text-base px-2 py-1 pt-1.5 m-1 laptop:m-2 rounded-lg bg-accent-100 ${
+        type={isForm ? "submit" : "button"}
+        disabled={pending}
+        aria-disabled={pending}
+        className={`relative text-sm tablet:text-base px-2 py-1 pt-1.5 m-1 laptop:m-2 rounded-lg bg-accent-100 disabled:text-transparent ${
           theme === "dark" ? "text-white" : "text-black"
         }  transition-all duration-400 ease-out first:ml-0 hover:scale-105 active:scale-100 link ${
           data.showCursor && "cursor-none"
-        }  ${classes}`}
+        } ${isForm && pending ? "button-loading" : undefined} ${classes}`}
       >
         {children}
       </button>

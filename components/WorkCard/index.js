@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../Button";
+import Image from "next/image";
 
 const WorkCard = ({ img, name, description, url, onClick }) => {
   return (
@@ -8,11 +9,16 @@ const WorkCard = ({ img, name, description, url, onClick }) => {
         className="relative rounded-lg overflow-hidden transition-all ease-out duration-300 h-48 mob:h-auto"
         style={{ height: "300px" }}
       >
-        <img
+        <Image
           alt={name}
           className="h-full w-full object-fill hover:scale-110 transition-all ease-out duration-300 "
           src={img}
-        ></img>
+          width={500}
+          height={500}
+          quality={100}
+          loading="lazy"
+          priority={false}
+        ></Image>
       </div>
       <Button
         type="link"
