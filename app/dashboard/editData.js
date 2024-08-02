@@ -251,6 +251,12 @@ const EditData = ({ myData, id }) => {
               >
                 Contact
               </Button>
+              <Button
+                onClick={() => setCurrentTabs("CONTACT")}
+                type={currentTabs === "CONTACT" && "primary"}
+              >
+                Contact
+              </Button>
             </div>
           </div>
           {/* HEADER */}
