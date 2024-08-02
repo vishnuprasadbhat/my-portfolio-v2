@@ -52,10 +52,13 @@ export const updatePortfolio = async (prevState, formData) => {
 };
 
 export async function authenticate(prevState, formData) {
+  let isRedirect = true;
   try {
-    await signIn("credentials", formData);
+    const res = await signIn("credentials", formData);
+    console.log(res);
   } catch (error) {
     if (error instanceof AuthError) {
+      isRedirect = false;
       if (error.type === "CredentialsSignin") {
         return "Invalid credentials.";
       } else {
@@ -64,7 +67,7 @@ export async function authenticate(prevState, formData) {
     }
     throw error;
   } finally {
-    redirect("/dashboard");
+    isRedirect && redirect("/dashboard");
   }
 }
 

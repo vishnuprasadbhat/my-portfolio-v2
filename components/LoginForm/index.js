@@ -73,10 +73,10 @@ export default function LoginForm() {
           aria-atomic="true"
         >
           {errorMessage ? (
-            <>
+            <div className="flex items-center gap-2">
               <FaCircleExclamation className="h-4 w-4 text-red-500" />
-              <p className="text-sm text-red-500">{errorMessage}</p>
-            </>
+              <p className="text-sm mt-1 text-red-500">{errorMessage}</p>
+            </div>
           ) : null}
         </div>
       </div>

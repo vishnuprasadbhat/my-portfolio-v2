@@ -41,7 +41,7 @@ const Button = ({ children, type, onClick, classes, isForm, ...rest }) => {
         {...rest}
         onClick={onClick}
         type="button"
-        className={`text-sm tablet:text-base px-2 py-1 pt-1.5 m-1 laptop:m-2  flex items-center hover:text-accent tablet:first:ml-0 ${
+        className={`text-sm tablet:text-base px-2 py-1 pt-1.5 m-1 laptop:m-2  flex items-center hover:text-accent tablet:first:ml-0 disabled:text-transparent ${
           data?.showCursor ? "cursor-none" : "undefined"
         } ${classes} link`}
       >
@@ -55,7 +55,9 @@ const Button = ({ children, type, onClick, classes, isForm, ...rest }) => {
       {...rest}
       onClick={onClick}
       type={isForm ? "submit" : "button"}
-      className={`text-sm tablet:text-base px-2 py-1 pt-1.5 laptop:p-2 m-1 laptop:m-2 rounded-lg flex items-center transition-all ease-out duration-300 ${
+      disabled={pending}
+      aria-disabled={pending}
+      className={`text-sm tablet:text-base px-2 py-1 pt-1.5 laptop:p-2 m-1 laptop:m-2 rounded-lg flex items-center transition-all ease-out duration-300 disabled:text-transparent ${
         theme === "dark"
           ? "hover:bg-slate-600 text-white"
           : "hover:bg-accent-800"

@@ -68,7 +68,8 @@ const Header = ({
               <div className="flex items-center">
                 {data.darkMode && (
                   <Button
-                    classes="mob:text-2xl mob:py-2"
+                    title={theme === "dark" ? "Light" : "Dark"}
+                    classes="mob:text-xl mob:py-2"
                     onClick={() =>
                       setTheme(theme === "dark" ? "light" : "dark")
                     }
@@ -82,17 +83,17 @@ const Header = ({
                 )}
 
                 {!isEdit ? (
-                  <PopoverButton className="mob:text-2xl mob:p-2">
+                  <PopoverButton className="mob:text-xl mob:p-2">
                     {open ? <FaXmark /> : <FaBars />}
                   </PopoverButton>
                 ) : (
                   <form action={appSignOut}>
                     <Button
-                      type="primary"
                       isForm
-                      classes="mob:text-2xl mob:py-2"
+                      classes="mob:text-xl mob:py-2"
+                      title="Logout"
                     >
-                      <FaPowerOff />
+                      <FaPowerOff className="text-red-400" />
                     </Button>
                   </form>
                 )}
@@ -191,6 +192,7 @@ const Header = ({
 
             {mounted && theme && data.darkMode && (
               <Button
+                title={theme === "dark" ? "Light" : "Dark"}
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
                 {theme === "dark" ? (
@@ -201,8 +203,8 @@ const Header = ({
               </Button>
             )}
             <Link href="/login">
-              <Button classes="mob:text-2xl mob:py-2 mt-2">
-                <FaArrowRightToBracket className="text-accent" />
+              <Button title="Login" classes="mob:text-2xl mob:py-2 mt-2">
+                <FaArrowRightToBracket className="text-green-400" />
               </Button>
             </Link>
           </div>
@@ -210,6 +212,7 @@ const Header = ({
           <div className="flex">
             {mounted && theme && data.darkMode && (
               <Button
+                title={theme === "dark" ? "Light" : "Dark"}
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
                 {theme === "dark" ? (
@@ -220,8 +223,8 @@ const Header = ({
               </Button>
             )}
             <form action={appSignOut}>
-              <Button classes="p-4" isForm>
-                <FaPowerOff />
+              <Button title="Logout" classes="p-4" isForm>
+                <FaPowerOff className="text-red-400" />
               </Button>
             </form>
           </div>
