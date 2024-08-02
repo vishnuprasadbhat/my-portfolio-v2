@@ -8,9 +8,9 @@ module.exports = {
   ],
   theme: {
     screens: {
-      mob: "375px",
-      tablet: "768px",
-      laptop: "1024px",
+      mob: "544px",
+      tablet: "700px",
+      laptop: "944px",
       desktop: "1280px",
       laptopl: "1440px",
     },
