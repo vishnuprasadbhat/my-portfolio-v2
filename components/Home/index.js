@@ -7,8 +7,6 @@ import Socials from "@/components/Socials";
 import WorkCard from "@/components/WorkCard";
 import ServiceCard from "@/components/ServiceCard";
 import TechStack from "@/components/TechStack";
-import Link from "next/link";
-import Button from "@/components/Button";
 import Footer from "@/components/Footer";
 import { useIsomorphicLayoutEffect } from "@/utils";
 import { stagger } from "@/animations";
@@ -152,14 +150,6 @@ export default function Home({ data }) {
           ))}
         </div>
       </div>
-      {/* This button should not go into production */}
-      {/* {process.env.NODE_ENV === "development" && ( */}
-      <div className="fixed bottom-5 right-5">
-        <Link href="/edit">
-          <Button type="primary">Edit Data</Button>
-        </Link>
-      </div>
-      {/* )} */}
 
       <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
         <h1 className="tablet:mt-10 text-2xl text-bold">About.</h1>

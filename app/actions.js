@@ -4,6 +4,9 @@ import { join } from "path";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { cache } from "react";
+import { signIn, signOut } from "@/auth";
+import { AuthError } from "next-auth";
+import { redirect } from "next/navigation";
 
 export const updateLocalFile = async (data) => {
   const portfolioData = join(process.cwd(), "/data/portfolio.json");
@@ -30,7 +33,7 @@ export const getPortfolioData = cache(async (isId = false) => {
   }
 });
 
-export const updatePortfolio = async (prevData, formData) => {
+export const updatePortfolio = async (prevState, formData) => {
   const data = formData.get("myData");
   const id = formData.get("id");
   try {
@@ -47,3 +50,24 @@ export const updatePortfolio = async (prevData, formData) => {
     // throw new Error("Failed to update data.");
   }
 };
+
+export async function authenticate(prevState, formData) {
+  try {
+    await signIn("credentials", formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      if (error.type === "CredentialsSignin") {
+        return "Invalid credentials.";
+      } else {
+        return "Something went wrong.";
+      }
+    }
+    throw error;
+  } finally {
+    redirect("/dashboard");
+  }
+}
+
+export async function appSignOut(prevState, formData) {
+  await signOut({ redirectTo: "/" });
+}

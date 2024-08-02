@@ -16,6 +16,7 @@ export default function HeaderSkeleton() {
         <Skeleton className={`h-8 w-16 hidden tablet:span ${shimmer}`} />
         <Skeleton className={`h-8 w-16 hidden tablet:span ${shimmer}`} />
         <Skeleton className={`h-8 w-8 ${shimmer}`} />
+        <Skeleton className={`h-8 w-8 ${shimmer}`} />
         <Skeleton className={`h-8 w-8 tablet:hidden ${shimmer}`} />
       </div>
     </div>

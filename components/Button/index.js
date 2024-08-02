@@ -4,14 +4,7 @@ import { useTheme } from "next-themes";
 import data from "../../data/portfolio.json";
 import { useFormStatus } from "react-dom";
 
-const Button = ({
-  children,
-  type,
-  onClick,
-  classes,
-  isForm,
-  isDisabled = false,
-}) => {
+const Button = ({ children, type, onClick, classes, isForm, ...rest }) => {
   const { theme } = useTheme();
   const { pending } = useFormStatus();
   const [mounted, setMounted] = useState(false);
@@ -26,6 +19,7 @@ const Button = ({
   if (type === "primary") {
     return (
       <button
+        {...rest}
         onClick={onClick}
         type={isForm ? "submit" : "button"}
         disabled={pending}
@@ -33,7 +27,7 @@ const Button = ({
         className={`relative text-sm tablet:text-base px-2 py-1 pt-1.5 m-1 laptop:m-2 rounded-lg bg-accent-100 disabled:text-transparent ${
           theme === "dark" ? "text-white" : "text-black"
         }  transition-all duration-400 ease-out first:ml-0 hover:scale-105 active:scale-100 link ${
-          data.showCursor && "cursor-none"
+          data?.showCursor ? "cursor-none" : "undefined"
         } ${isForm && pending ? "button-loading" : undefined} ${classes}`}
       >
         {children}
@@ -44,10 +38,11 @@ const Button = ({
   if (type === "link") {
     return (
       <button
+        {...rest}
         onClick={onClick}
         type="button"
         className={`text-sm tablet:text-base px-2 py-1 pt-1.5 m-1 laptop:m-2  flex items-center hover:text-accent tablet:first:ml-0 ${
-          data.showCursor && "cursor-none"
+          data?.showCursor ? "cursor-none" : "undefined"
         } ${classes} link`}
       >
         {children}
@@ -57,15 +52,18 @@ const Button = ({
 
   return (
     <button
+      {...rest}
       onClick={onClick}
-      type="button"
+      type={isForm ? "submit" : "button"}
       className={`text-sm tablet:text-base px-2 py-1 pt-1.5 laptop:p-2 m-1 laptop:m-2 rounded-lg flex items-center transition-all ease-out duration-300 ${
         theme === "dark"
           ? "hover:bg-slate-600 text-white"
           : "hover:bg-accent-800"
       } hover:scale-105 active:scale-100  tablet:first:ml-0  ${
-        data.showCursor && "cursor-none"
-      } ${classes} link`}
+        data?.showCursor ? "cursor-none" : "undefined"
+      } ${
+        isForm && pending ? "button-loading" : undefined
+      } ${classes} ${classes} link`}
     >
       {children}
     </button>

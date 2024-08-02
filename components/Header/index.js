@@ -1,12 +1,21 @@
 "use client";
-import { Popover } from "@headlessui/react";
+import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 import Button from "../Button";
 import PDFViewer from "../PDFViewer";
-import { FaSun, FaMoon, FaBars, FaXmark } from "react-icons/fa6";
+import {
+  FaSun,
+  FaMoon,
+  FaBars,
+  FaXmark,
+  FaPowerOff,
+  FaArrowRightToBracket,
+} from "react-icons/fa6";
 import { usePathname, useRouter } from "next/navigation";
 import HeaderSkeleton from "./skeleton";
+import Link from "next/link";
+import { appSignOut } from "@/app/actions";
 
 const Header = ({
   handleWorkScroll,
@@ -72,60 +81,54 @@ const Header = ({
                   </Button>
                 )}
 
-                <Popover.Button className="mob:text-2xl mob:p-2">
-                  {open ? <FaXmark /> : <FaBars />}
-                </Popover.Button>
+                {!isEdit ? (
+                  <PopoverButton className="mob:text-2xl mob:p-2">
+                    {open ? <FaXmark /> : <FaBars />}
+                  </PopoverButton>
+                ) : (
+                  <form action={appSignOut}>
+                    <Button
+                      type="primary"
+                      isForm
+                      classes="mob:text-2xl mob:py-2"
+                    >
+                      <FaPowerOff />
+                    </Button>
+                  </form>
+                )}
               </div>
             </div>
-            <Popover.Panel
-              className={`absolute right-0 z-10 w-11/12 p-4 ${
+            <PopoverPanel
+              className={`absolute right-0 z-10 w-full p-4 ${
                 theme === "dark" ? "bg-slate-800" : "bg-white"
               } shadow-md rounded-md`}
             >
-              {!isBlog ? (
-                <div className="grid grid-cols-1" onClick={close}>
-                  <Button onClick={handleWorkScroll}>Work</Button>
-                  <Button onClick={handleTechStackScroll}>Tech Stack</Button>
-                  <Button onClick={handleAboutScroll}>About</Button>
-                  {showBlog && (
-                    <Button onClick={() => router.push("/blog")}>Blog</Button>
-                  )}
-                  {showResume && (
-                    <Button
-                      onClick={() =>
-                        isResumePDF ? setIsOpen(true) : router.push("/resume")
-                      }
-                      classes="first:ml-1"
-                    >
-                      Resume
-                    </Button>
-                  )}
-
-                  <Button onClick={handleContact}>Contact</Button>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1" onClick={close}>
-                  <Button onClick={() => router.push("/")} classes="first:ml-1">
-                    Home
+              <div className="flex flex-col gap-1" onClick={close}>
+                <Button onClick={handleWorkScroll}>Work</Button>
+                <Button onClick={handleTechStackScroll}>Tech Stack</Button>
+                <Button onClick={handleAboutScroll}>About</Button>
+                {showBlog && (
+                  <Button onClick={() => router.push("/blog")}>Blog</Button>
+                )}
+                {showResume && (
+                  <Button
+                    onClick={() =>
+                      isResumePDF ? setIsOpen(true) : router.push("/resume")
+                    }
+                    classes="first:ml-1"
+                  >
+                    Resume
                   </Button>
-                  {showBlog && (
-                    <Button onClick={() => router.push("/blog")}>Blog</Button>
-                  )}
-                  {showResume && (
-                    <Button
-                      onClick={() =>
-                        isResumePDF ? setIsOpen(true) : router.push("/resume")
-                      }
-                      classes="first:ml-1"
-                    >
-                      Resume
-                    </Button>
-                  )}
-
-                  <Button onClick={handleContact}>Contact</Button>
-                </div>
-              )}
-            </Popover.Panel>
+                )}
+                <Button onClick={handleContact}>Contact</Button>
+                <Link href="/login">
+                  <Button classes="w-full">
+                    Login to Edit
+                    {/* <FaArrowRightToBracket className="text-accent ml-auto" /> */}
+                  </Button>
+                </Link>
+              </div>
+            </PopoverPanel>
           </>
         )}
       </Popover>
@@ -135,7 +138,7 @@ const Header = ({
         } bg-opacity-90`}
       >
         <h1 className="font-medium mob:p-2 laptop:p-0">{name}</h1>
-        {!isBlog ? (
+        {!isEdit ? (
           <div className="flex">
             <Button
               onClick={handleWorkScroll}
@@ -167,7 +170,7 @@ const Header = ({
                 Blog
               </Button>
             )}
-            {!isEdit && showResume && (
+            {showResume && (
               <Button
                 onClick={() =>
                   isResumePDF ? setIsOpen(true) : router.push("/resume")
@@ -178,67 +181,13 @@ const Header = ({
                 Resume
               </Button>
             )}
-
-            {!isEdit && (
-              <Button
-                onClick={handleContact}
-                type="link"
-                classes="btn-nav pb-0.5"
-              >
-                Contact
-              </Button>
-            )}
-            {mounted && theme && data.darkMode && (
-              <Button
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              >
-                {theme === "dark" ? (
-                  <FaSun className="text-accent" />
-                ) : (
-                  <FaMoon className="text-accent" />
-                )}
-              </Button>
-            )}
-          </div>
-        ) : (
-          <div className="flex">
             <Button
-              onClick={() => router.push("/")}
+              onClick={handleContact}
               type="link"
               classes="btn-nav pb-0.5"
             >
-              Home
+              Contact
             </Button>
-            {!isEdit && showBlog && (
-              <Button
-                onClick={() => router.push("/blog")}
-                type="link"
-                classes="btn-nav pb-0.5"
-              >
-                Blog
-              </Button>
-            )}
-            {!isEdit && showResume && (
-              <Button
-                onClick={() =>
-                  isResumePDF ? setIsOpen(true) : router.push("/resume")
-                }
-                type="link"
-                classes="first:ml-1 btn-nav pb-0.5"
-              >
-                Resume
-              </Button>
-            )}
-
-            {!isEdit && (
-              <Button
-                onClick={handleContact}
-                type="link"
-                classes="btn-nav pb-0.5"
-              >
-                Contact
-              </Button>
-            )}
 
             {mounted && theme && data.darkMode && (
               <Button
@@ -251,6 +200,30 @@ const Header = ({
                 )}
               </Button>
             )}
+            <Link href="/login">
+              <Button classes="mob:text-2xl mob:py-2 mt-2">
+                <FaArrowRightToBracket className="text-accent" />
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="flex">
+            {mounted && theme && data.darkMode && (
+              <Button
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark" ? (
+                  <FaSun className="text-accent" />
+                ) : (
+                  <FaMoon className="text-accent" />
+                )}
+              </Button>
+            )}
+            <form action={appSignOut}>
+              <Button classes="p-4" isForm>
+                <FaPowerOff />
+              </Button>
+            </form>
           </div>
         )}
       </div>
