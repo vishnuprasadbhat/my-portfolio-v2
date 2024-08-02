@@ -3,7 +3,7 @@ import { authConfig } from "./auth.config";
 import Credentials from "next-auth/providers/credentials";
 import { z } from "zod";
 import { sql } from "@vercel/postgres";
-import bcrypt from "bcrypt";
+const bcrypt = require("bcryptjs");
 
 async function getUser(email) {
   try {
@@ -14,7 +14,7 @@ async function getUser(email) {
     throw new Error("Failed to fetch user.");
   }
 }
-export const { auth, signIn, signOut } = NextAuth({
+export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
     Credentials({
