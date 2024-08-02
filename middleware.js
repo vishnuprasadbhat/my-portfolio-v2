@@ -15,7 +15,7 @@ export function middleware(request) {
   const externalUrls = ['https://github.com/', 'https://www.linkedin.com/','https://twitter.com/'];
 
   // Check if the request URL is external
-  const isExternal = externalUrls.some(externalUrl => url.href.startsWith(externalUrl)|| url.href.indexOf("netlify.app")>-1);
+  const isExternal =  url.href.indexOf("netlify.app")>-1 || externalUrls.some(externalUrl => url.href.startsWith(externalUrl));
 
   // If the URL is external, return a response that redirects to the external URL
   if (isExternal) {
