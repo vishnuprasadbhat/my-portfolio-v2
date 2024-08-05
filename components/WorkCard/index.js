@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button";
 import Image from "next/image";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 const WorkCard = ({ img, name, description, url, onClick }) => {
   return (
@@ -11,7 +12,7 @@ const WorkCard = ({ img, name, description, url, onClick }) => {
       >
         <Image
           alt={name}
-          className="h-full w-full object-fill hover:scale-110 transition-all ease-out duration-300 "
+          className="h-full w-full object-fill hover:scale-110 transition-all ease-out duration-300"
           src={img}
           width={500}
           height={500}
@@ -23,14 +24,19 @@ const WorkCard = ({ img, name, description, url, onClick }) => {
       <Button
         type="link"
         onClick={onClick}
-        classes={`btn-underline pb-0.5 mt-5 px-0 ml-0 laptop:ml-0 mob:text-2xl laptop:text-2xl font-medium ${
-          url ? "cursor-pointer" : "cursor-not-allowed"
+        classes={`pb-0.5 mt-5 px-0 ml-0 laptop:ml-0 text-xl laptop:text-2xl font-medium ${
+          url
+            ? "cursor-pointer btn-underline"
+            : "cursor-not-allowed hover:text-current"
         }`}
       >
-        {name ? name : "Project Name"}
+        {name ?? "Project Name"}
+        {url ? (
+          <FaArrowUpRightFromSquare className="w-3 h-3 ml-2 mb-0.5" />
+        ) : null}
       </Button>
-      <h2 className="mob:text-justify text-xl opacity-50">
-        {description ? description : "Description"}
+      <h2 className="mob:text-justify text-pretty text-lg laptop:text-xl opacity-50">
+        {description ?? "Description"}
       </h2>
     </div>
   );

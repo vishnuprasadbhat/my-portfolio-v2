@@ -7,8 +7,12 @@ import { getPortfolioData } from "./actions";
 export default async function Portfolio() {
   const data = await getPortfolioData();
   return (
-    <div className={`relative ${data.showCursor && "cursor-none"}`}>
-      {data.showCursor && <Cursor />}
+    <div className={`relative ${data.showCursor && "cursor-none"} px-2`}>
+      {data.showCursor && (
+        <div className="hidden tablet:flex">
+          <Cursor />
+        </div>
+      )}
       <div className="gradient-circle"></div>
       <div className="gradient-circle-bottom"></div>
       <Home data={data} />

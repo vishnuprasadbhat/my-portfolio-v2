@@ -25,6 +25,7 @@ const Cursor = () => {
           color={getCusomColor()}
           innerScale={0.7}
           outerScale={3}
+          showSystemCursor
         />
       )}
     </>

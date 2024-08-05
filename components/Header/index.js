@@ -60,31 +60,33 @@ const Header = ({
       >
         {({ open, close }) => (
           <>
-            <div className="flex items-center justify-between laptop:p-0">
-              <h1 className="text-lg mt-2 ml-1 font-medium laptop:p-0">
-                {name}
-              </h1>
+            <div className="px-2 flex items-center justify-between laptop:p-0">
+              <h1 className="text-lg mt-2 font-medium laptop:p-0">{name}</h1>
 
-              <div className="flex items-center">
+              <div className="flex items-center gap-1">
                 {data.darkMode && (
                   <Button
                     title={theme === "dark" ? "Light" : "Dark"}
-                    classes="mob:text-xl mob:py-2"
+                    classes="text-xl px-1.5 py-1.5"
                     onClick={() =>
                       setTheme(theme === "dark" ? "light" : "dark")
                     }
                   >
                     {theme === "dark" ? (
-                      <FaSun className="text-accent" />
+                      <FaSun className="text-accent w-4 h-4" />
                     ) : (
-                      <FaMoon className="text-accent" />
+                      <FaMoon className="text-accent w-4 h-4" />
                     )}
                   </Button>
                 )}
 
                 {!isEdit ? (
                   <PopoverButton className="mob:text-xl mob:p-2">
-                    {open ? <FaXmark /> : <FaBars />}
+                    {open ? (
+                      <FaXmark className="w-4 h-4" />
+                    ) : (
+                      <FaBars className="w-4 h-4" />
+                    )}
                   </PopoverButton>
                 ) : (
                   <form action={appSignOut}>
@@ -134,13 +136,13 @@ const Header = ({
         )}
       </Popover>
       <div
-        className={`mt-10 hidden flex-row items-center justify-between sticky top-0 z-10 tablet:flex ${
+        className={`mt-10 hidden tablet:flex flex-row items-center justify-between sticky top-0 z-10 ${
           theme === "dark" ? "bg-dark-bg" : "bg-white"
         } bg-opacity-90`}
       >
         <h1 className="font-medium mob:p-2 laptop:p-0">{name}</h1>
         {!isEdit ? (
-          <div className="flex">
+          <div className="flex gap-2">
             <Button
               onClick={handleWorkScroll}
               type="link"

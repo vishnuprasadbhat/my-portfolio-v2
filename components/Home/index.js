@@ -66,7 +66,7 @@ export default function Home({ data }) {
   }, []);
 
   return (
-    <div className="relative container mx-auto mb-10">
+    <div className="relative container mx-auto mb-5">
       <Header
         handleWorkScroll={handleWorkScroll}
         handleAboutScroll={handleAboutScroll}
@@ -74,10 +74,10 @@ export default function Home({ data }) {
         handleContactScroll={handleContactScroll}
         data={data}
       />
-      <div className="laptop:mt-20 laptop:mb-20 mt-10">
+      <div className="px-2 laptop:mt-20 laptop:mb-20 mt-5">
         <div className="mt-5">
           <div
-            className="flex items-center text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-4/5 mob:w-full laptop:w-4/5"
+            className="flex items-center text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-6xl py-1 tablet:py-2 text-bold w-4/5 mob:w-full laptop:w-4/5"
             ref={textOne}
           >
             <h1 ref={textOne} className="mr-3">
@@ -87,18 +87,18 @@ export default function Home({ data }) {
           </div>
           <h1
             ref={textTwo}
-            className="text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+            className="text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-6xl py-1 tablet:py-2 text-bold w-full laptop:w-4/5"
           >
             {data.headerTaglineTwo}
           </h1>
           <h1
             ref={textThree}
-            className="text-accent text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+            className="text-accent text-3xl tablet:text-5xl laptop:text-5xl laptopl:text-6xl py-1 tablet:py-2 text-bold w-full laptop:w-4/5"
           >
             {data.headerTaglineThree}
           </h1>
           <div
-            className="flex items-center text-2xl tablet:text-4xl laptop:text-4xl laptopl:text-8xl p-1 tablet:p-2 text-bold w-full laptop:w-4/5"
+            className="flex items-center text-2xl tablet:text-4xl laptop:text-4xl laptopl:text-6xl py-1 tablet:py-2 text-bold w-full laptop:w-4/5"
             ref={textFour}
           >
             <FaLocationDot className="mr-2 mb-1" />
@@ -106,10 +106,10 @@ export default function Home({ data }) {
           </div>
         </div>
 
-        <Socials data={data} className="mt-2 laptop:mt-5" />
+        <Socials data={data} className="mt-2 laptop:mt-12" />
       </div>
-      <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={workRef}>
-        <h1 className="text-2xl text-bold">Work.</h1>
+      <div className="mt-10 laptop:mt-30 laptop:p-0" ref={workRef}>
+        <h1 className="px-2 text-2xl text-bold">Work.</h1>
         <div className="mt-5 laptop:mt-10 grid grid-cols-1 tablet:grid-cols-2 gap-4">
           {data?.projects?.map((project) => (
             <WorkCard
@@ -125,8 +125,8 @@ export default function Home({ data }) {
       </div>
 
       {data.showServices && (
-        <div className="mt-10 laptop:mt-30 p-2 laptop:p-0">
-          <h1 className="tablet:mt-10 text-2xl text-bold">Services.</h1>
+        <div className="mt-10 laptop:mt-30 laptop:p-0">
+          <h1 className="px-2 tablet:mt-10 text-2xl text-bold">Services.</h1>
           <div className="mt-5 tablet:mt-10 grid grid-cols-1 laptop:grid-cols-2 gap-6">
             {data.services.map((service, index) => (
               <ServiceCard
@@ -138,8 +138,8 @@ export default function Home({ data }) {
           </div>
         </div>
       )}
-      <div className="mt-10 laptop:mt-30 p-2 laptop:p-0" ref={techStackRef}>
-        <h1 className="text-2xl text-bold">Tech Stack.</h1>
+      <div className="mt-10 laptop:mt-30 laptop:p-0" ref={techStackRef}>
+        <h1 className="px-2 text-2xl text-bold">Tech Stack.</h1>
         <div className="mt-5 tablet:mt-10 grid grid-cols-2 laptop:grid-cols-6 gap-6">
           {data?.techStacks?.map((techStack) => (
             <TechStack
@@ -151,16 +151,17 @@ export default function Home({ data }) {
         </div>
       </div>
 
-      <div className="mt-10 laptop:mt-40 p-2 laptop:p-0" ref={aboutRef}>
-        <h1 className="tablet:mt-10 text-2xl text-bold">About.</h1>
-        <p className="mob:text-justify tablet:mt-10 mt-2 text-xl laptop:text-3xl w-full laptop:w-3/5">
+      <div className="mt-10 laptop:mt-40 laptop:p-0" ref={aboutRef}>
+        <h1 className="px-2 tablet:mt-10 text-2xl text-bold">About.</h1>
+        <p className="px-2 text-justify text-pretty tablet:mt-10 mt-2 text-xl laptop:text-2xl w-full laptop:w-3/5">
           {data.aboutpara}
         </p>
       </div>
+      <hr className="border-gray-500 w-4/5 laptop:w-3/5 my-8 laptop:my-20"></hr>
       <div ref={contactRef}>
         <Footer data={data} />
       </div>
-      <div className="absolute right-2 bottom-24 tablet:right-2 tablet:bottom-5  laptop:-right-5 laptop:bottom-0">
+      <div className="absolute right-1 bottom-14 tablet:right-2 tablet:bottom-5  laptop:-right-5 laptop:bottom-0">
         <Image
           src="/images/contact.png"
           width={368}
@@ -168,7 +169,7 @@ export default function Home({ data }) {
           alt="contact"
           quality={100}
           loading="lazy"
-          className="mob:w-28 tablet:w-52 laptop:w-96"
+          className="w-32 tablet:w-52 laptop:w-96"
           priority={false}
         ></Image>
       </div>
