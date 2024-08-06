@@ -1,13 +1,15 @@
+"use client";
 import Head from "next/head";
-import Router, { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import { stagger } from "../../animations";
-import Button from "../../components/Button";
-import Cursor from "../../components/Cursor";
-import Header from "../../components/Header";
-import data from "../../data/portfolio.json";
-import { ISOToDate, useIsomorphicLayoutEffect } from "../../utils";
-import { getAllPosts } from "../../utils/api";
+import { stagger } from "@/animations";
+import Button from "@/components/Button";
+import Cursor from "@/components/Cursor";
+import Header from "@/components/Header";
+import data from "@/data/portfolio.json";
+import { ISOToDate, useIsomorphicLayoutEffect } from "@/utils";
+// import { getAllPosts } from "@/utils/api";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 const Blog = ({ posts }) => {
   const showBlog = useRef(data.showBlog);
   const text = useRef();
@@ -72,7 +74,7 @@ const Blog = ({ posts }) => {
             data.showCursor && "cursor-none"
           }`}
         >
-          <Header isBlog={true}></Header>
+          <Header data={data} isBlog={true}></Header>
           <div className="mt-10">
             <h1
               ref={text}
@@ -81,18 +83,18 @@ const Blog = ({ posts }) => {
               Blog.
             </h1>
             <div className="mt-10 grid grid-cols-1 mob:grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 justify-between gap-10">
-              {posts &&
+              {posts ??
                 posts.map((post) => (
                   <div
                     className="cursor-pointer relative"
                     key={post.slug}
-                    onClick={() => Router.push(`/blog/${post.slug}`)}
+                    onClick={() => router.push(`/blog/${post.slug}`)}
                   >
-                    <img
+                    <Image
                       className="w-full h-60 rounded-lg shadow-lg object-cover"
                       src={post.image}
                       alt={post.title}
-                    ></img>
+                    ></Image>
                     <h2 className="mt-5 text-4xl">{post.title}</h2>
                     <p className="mt-2 opacity-50 text-lg">{post.preview}</p>
                     <span className="text-sm mt-5 opacity-25">
@@ -128,21 +130,21 @@ const Blog = ({ posts }) => {
   );
 };
 
-export async function getStaticProps() {
-  const posts = getAllPosts([
-    "slug",
-    "title",
-    "image",
-    "preview",
-    "author",
-    "date",
-  ]);
+// export async function getStaticProps() {
+//   const posts = getAllPosts([
+//     "slug",
+//     "title",
+//     "image",
+//     "preview",
+//     "author",
+//     "date",
+//   ]);
 
-  return {
-    props: {
-      posts: [...posts],
-    },
-  };
-}
+//   return {
+//     props: {
+//       posts: [...posts],
+//     },
+//   };
+// }
 
 export default Blog;

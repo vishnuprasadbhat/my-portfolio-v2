@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import StackIcon from "tech-stack-icons";

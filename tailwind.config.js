@@ -1,20 +1,24 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
   darkMode: "class",
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     screens: {
-      mob: "375px",
+      mob: "480px",
       tablet: "768px",
       laptop: "1024px",
-      desktop: "1280px",
-      laptopl: "1440px",
+      desktop: "1440px",
+      laptopl: "1536px",
     },
     extend: {
       colors: {
         "dark-bg": "#121212",
+        "skeleton-bg": "#eee",
+        "dark-skeleton-bg": "#313131",
         accent: "#0088a9",
         "accent-100": "#1a94b2",
         "accent-200": "#33a0ba",
@@ -28,6 +32,15 @@ module.exports = {
       },
       boxShadow: {
         accent: "0 0 0.5rem rgba(0, 136, 169, 0.8) ",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-skeleton":
+          "linear-gradient(-45deg, #eee 40%, #fafafa 50%, #eee 60%)",
+        "gradient-dark-skeleton":
+          "linear-gradient(-45deg, #313131 40%, #555555 50%, #313131 60%",
       },
     },
   },

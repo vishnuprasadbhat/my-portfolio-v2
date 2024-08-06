@@ -2,14 +2,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "./markdown.css";
+@import "../styles/markdown.css";
+@import "../styles/loading.css";
+@import "~react-toastify/dist/ReactToastify.min.css";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+[data-theme="dark"] {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
 
 * {
   font-family: "Hind", sans-serif;
 }
 
 body {
-  @apply dark:bg-black dark:text-white;
+  /* @apply dark:bg-black dark:text-white; */
+  color: var(--foreground-rgb);
+  background: var(--background-end-rgb);
 }
 
 .gradient-circle {
@@ -18,7 +42,7 @@ body {
   z-index: 100;
   top: -30px;
   height: 40px;
-  width: 100vw;
+  width: 98.4%;
   opacity: 0.5;
   filter: blur(40px);
   background: radial-gradient(
@@ -33,7 +57,7 @@ body {
   z-index: 100;
   bottom: -20px;
   height: 30px;
-  width: 100vw;
+  width: 98.4%;
   opacity: 0.5;
   filter: blur(40px);
   background: radial-gradient(
@@ -125,5 +149,56 @@ body {
   }
   100% {
     transform: scaleX(-1) rotate(0deg);
+  }
+}
+
+.button-loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 2px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.skeleton {
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  background-size: 300%;
+  background-position-x: 100%;
+
+  animation-name: shimmer;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes shimmer {
+  to {
+    background-position-x: 0%;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }

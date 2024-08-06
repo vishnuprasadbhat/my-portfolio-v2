@@ -1,15 +1,15 @@
-import "../styles/globals.css";
+"use client";
 import { ThemeProvider } from "next-themes";
 import { IconContext } from "react-icons";
 
-const App = ({ Component, pageProps }) => {
+const Providers = ({ children }) => {
   return (
-    <ThemeProvider>
+    <ThemeProvider attribute="class" defaultTheme="dark">
       <IconContext.Provider value={{ style: { verticalAlign: "middle" } }}>
-        <Component {...pageProps} />
+        {children}
       </IconContext.Provider>
     </ThemeProvider>
   );
 };
 
-export default App;
+export default Providers;

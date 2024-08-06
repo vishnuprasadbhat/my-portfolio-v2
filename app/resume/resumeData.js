@@ -1,27 +1,26 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import Cursor from "../components/Cursor";
-import Header from "../components/Header";
-import ProjectResume from "../components/ProjectResume";
-import Socials from "../components/Socials";
-import Button from "../components/Button";
 import { useTheme } from "next-themes";
-// Data
-import { name, showResume } from "../data/portfolio.json";
-import { resume } from "../data/portfolio.json";
-import data from "../data/portfolio.json";
+import Button from "@/components/Button";
+import Cursor from "@/components/Cursor";
+import Header from "@/components/Header";
+import Socials from "@/components/Socials";
+import ProjectResume from "@/components/ProjectResume";
+import { useRouter } from "next/navigation";
 
-const Resume = () => {
+const ResumeData = ({ data }) => {
   const router = useRouter();
   const theme = useTheme();
   const [mount, setMount] = useState(false);
+  const { name, resume, showCursor, showResume } = data ?? {};
 
   useEffect(() => {
     setMount(true);
     if (!showResume) {
       router.push("/");
     }
-  }, []);
+  }, [showResume, router]);
+
   return (
     <>
       {process.env.NODE_ENV === "development" && (
@@ -31,13 +30,9 @@ const Resume = () => {
           </Button>
         </div>
       )}
-      {data.showCursor && <Cursor />}
-      <div
-        className={`container mx-auto mb-10 ${
-          data.showCursor && "cursor-none"
-        }`}
-      >
-        <Header isBlog />
+      {showCursor && <Cursor />}
+      <div className={`container mx-auto mb-10 ${showCursor && "cursor-none"}`}>
+        <Header data={data} isBlog />
         {mount && (
           <div className="mt-10 w-full flex flex-col items-center">
             <div
@@ -51,7 +46,7 @@ const Resume = () => {
                 {resume.description}
               </h2>
               <div className="mt-2">
-                <Socials />
+                <Socials data={data} />
               </div>
               <div className="mt-5">
                 <h1 className="text-2xl font-bold">Experience</h1>
@@ -131,4 +126,4 @@ const Resume = () => {
   );
 };
 
-export default Resume;
+export default ResumeData;
