@@ -2,7 +2,7 @@ import Button from "../Button";
 
 const Socials = ({ data, className }) => {
   return (
-    <div className={`${className} flex flex-wrap mob:flex-nowrap link`}>
+    <div className={`${className} flex flex-wrap mob:flex-nowrap gap-2 link`}>
       {data?.socials?.map((social, index) => (
         <Button
           key={index}
