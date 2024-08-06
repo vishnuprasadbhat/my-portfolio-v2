@@ -60,8 +60,8 @@ const Header = ({
       >
         {({ open, close }) => (
           <>
-            <div className="px-2 flex items-center justify-between laptop:p-0">
-              <h1 className="text-lg mt-2 font-medium laptop:p-0">{name}</h1>
+            <div className="px-2 py-1 flex items-center justify-between laptop:p-0">
+              <h1 className="text-lg mt-1 font-medium laptop:p-0">{name}</h1>
 
               <div className="flex items-center gap-1">
                 {data.darkMode && (
@@ -73,9 +73,9 @@ const Header = ({
                     }
                   >
                     {theme === "dark" ? (
-                      <FaSun className="text-accent w-4 h-4" />
+                      <FaSun className="text-accent w-5 h-6" />
                     ) : (
-                      <FaMoon className="text-accent w-4 h-4" />
+                      <FaMoon className="text-accent w-5 h-6" />
                     )}
                   </Button>
                 )}
@@ -83,9 +83,9 @@ const Header = ({
                 {!isEdit ? (
                   <PopoverButton className="mob:text-xl mob:p-2">
                     {open ? (
-                      <FaXmark className="w-4 h-4" />
+                      <FaXmark className="w-5 h-6" />
                     ) : (
-                      <FaBars className="w-4 h-4" />
+                      <FaBars className="w-5 h-6" />
                     )}
                   </PopoverButton>
                 ) : (
@@ -102,9 +102,9 @@ const Header = ({
               </div>
             </div>
             <PopoverPanel
-              className={`absolute right-0 z-10 w-full p-4 ${
+              className={`absolute right-0 z-10 w-1/2 p-4 ${
                 theme === "dark" ? "bg-slate-800" : "bg-white"
-              } shadow-md rounded-md`}
+              } shadow-md rounded-md transition duration-200 ease-in-out data-[closed]:-translate-y-1 data-[closed]:opacity-0`}
             >
               <div className="flex flex-col gap-1" onClick={close}>
                 <Button onClick={handleWorkScroll}>Work</Button>

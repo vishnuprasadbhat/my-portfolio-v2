@@ -62,7 +62,7 @@ export default function LoginForm() {
         </div>
         <Button
           type="primary"
-          classes="mx-0 mt-5 tablet:mx-0 tablet:mt-5 laptop:mt-5 laptop:mx-0 w-full flex cursor-pointer"
+          classes="mx-0 mt-5 tablet:mx-0 tablet:mt-5 laptop:mt-10 laptop:mx-0 w-full flex cursor-pointer"
           isForm
         >
           Log in <FaArrowRight className="ml-auto h-5 w-5" />
