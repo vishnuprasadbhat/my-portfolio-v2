@@ -22,12 +22,12 @@
 - About
 - Resume
 - Contact
-- Login to Edit
+- Login (to Edit data)
 
-### Tech Stack Used -
+### Tech Stack Used
 
 - Next.js (Using lastest app router)
 - TailwindCSS
-- Serverless Postgress SQL
+- Serverless Postgres
 - Next Auth
 - Vercel
