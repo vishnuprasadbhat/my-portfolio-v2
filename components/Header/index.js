@@ -102,9 +102,11 @@ const Header = ({
               </div>
             </div>
             <PopoverPanel
+              transition
               className={`absolute right-0 z-10 w-1/2 p-4 ${
-                theme === "dark" ? "bg-slate-800" : "bg-white"
-              } shadow-md rounded-md transition duration-200 ease-in-out data-[closed]:-translate-y-1 data-[closed]:opacity-0`}
+                theme === "dark" ? "bg-zinc-800/30" : "bg-zinc-200/30"
+              } border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-gradient-to-b dark:from-zinc-800
+              shadow-md rounded-md transition duration-200 ease-in-out data-[closed]:-translate-y-1 data-[closed]:opacity-0`}
             >
               <div className="flex flex-col gap-1" onClick={close}>
                 <Button onClick={handleWorkScroll}>Work</Button>
