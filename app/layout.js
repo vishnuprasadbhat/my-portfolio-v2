@@ -8,7 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Vishnu's Portfolio",
-  description: "Vishnu Prasad Bhat - Portfolio",
+  description:
+    "Enthusiastic web developer, experienced in frontend web development. Passionate about responsive website design, enjoys researching and building innovative applications tailored to the needs of the business.",
   icons: {
     icon: "/images/logo.png",
     shortcut: "/images/logo.png",
